@@ -11,6 +11,7 @@ data <- read.csv("cleaned-cdc-mortality-1999-2010.csv") #data
 data <- filter(data, Year==2010) #picked 2010 based on instructions in hw
 
 #http://rstudio.github.io/shiny/tutorial/#inputs-and-outputs for the server side of stuff
+#i prefer dplyr over googlevis right now, don't feel comfortable with googlevis
 
 shinyServer(function(input, output) {
   
