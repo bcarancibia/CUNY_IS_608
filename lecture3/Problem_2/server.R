@@ -25,7 +25,7 @@ shinyServer(function(input, output) {
 #summary
   output$barPlot <- renderPlot({
     data_filtered <- datasetChoice()
-    if (nrow(data_filtered) == 12){
+    if (nrow(data_filtered) == 12){ #remove all cases where there is not complete dataset
       natlAvg <- national()
       data_filtered["compareNatl"] <- data_filtered$Crude.Rate - ((natlAvg$Deaths/natlAvg$Population)) #compare seems wrong
       
