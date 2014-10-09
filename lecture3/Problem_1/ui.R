@@ -19,7 +19,7 @@ shinyUI(pageWithSidebar(
     submitButton("Update")
     ),
   
-  mainPanel(plotOutput("barPlot", height="800px"))
+  mainPanel(plotOutput("barPlot", height="1000px"))
 ))
   
 

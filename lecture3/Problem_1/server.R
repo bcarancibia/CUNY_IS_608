@@ -8,7 +8,7 @@ require(ggplot2)
 
 data <- read.csv("cleaned-cdc-mortality-1999-2010.csv") #data
 
-data <- filter(data, Year==2007) #picked 2007 because that's when I graduated high school
+data <- filter(data, Year==2010) #picked 2010 based on instructions in hw
 
 #http://rstudio.github.io/shiny/tutorial/#inputs-and-outputs for the server side of stuff
 
@@ -19,5 +19,19 @@ shinyServer(function(input, output) {
   datasetInput <- reactive({
     filter(data, ICD.Chapter == input$cause)
   })
+  
+  output$barPlot <- renderPlot({
+    sort_this <- datasetInput()
+    sorted <- sort_this[order(sort_this$Crude.Rate),]
+    sorted$State <- factor(sorted$State, levels=unique(as.character(sorted$State)))
+    
+    if (length(sorted$State) > 0){
+      ggplot(data=sorted, aes(x=State, y=Crude.Rate, fill=Population)) + 
+        geom_bar(stat="identity", position = position_dodge(width=10)) + 
+        coord_flip() + 
+        ylab("Crude Mortality Rate Across States by Cause of Death") + 
+        ggtitle(input$cause) +
+        theme_bw()
+    }
   
  
