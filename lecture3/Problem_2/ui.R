@@ -8,6 +8,7 @@ setwd("/users/bcarancibia/CUNY_IS_608/lecture3/Problem_2") #you will need to cha
 data <- read.csv("cleaned-cdc-mortality-1999-2010.csv") #load data
 
 #used this as guide: http://rstudio.github.io/shiny/tutorial/#ui-and-server
+#used pretty much exact same setup as problem 1
 # Define UI 
 shinyUI(pageWithSidebar(
   headerPanel("Crude Mortality Rate by State compared to National Average"),

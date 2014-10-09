@@ -3,7 +3,7 @@
 #ben arancibia
 
 library(shiny)
-library(dplyr)
+require(dplyr) # like dplyr more, easier to manipulate
 library(ggplot2)
 
 setwd("/users/bcarancibia/CUNY_IS_608/lecture3/Problem_2") #You will need to change this
@@ -23,20 +23,20 @@ shinyServer(function(input, output) {
   })
   
 #summary
-  output$barPlot <- renderPlot({
-    data_filtered <- datasetChoice()
-    if (nrow(data_filtered) == 12){ #remove all cases where there is not complete dataset
-      national_average <- national()
-      data_filtered["compareNatl"] <- data_filtered$Crude.Rate - ((national_average$Deaths/national_average$Population)) #compare seems wrong
+output$barPlot <- renderPlot({
+  data_filtered <- datasetChoice()
+  if (nrow(data_filtered) == 12){ #remove all cases where there is not complete dataset for years
+    national_average <- national()
+    data_filtered["compare_national"] <- data_filtered$Crude.Rate - ((national_average$Deaths/national_average$Population)) #compare seems wrong do i need to multiply by a factor
       
-#make a viz
-      
-      ggplot(data=data_filtered, aes(x=factor(Year), y=compareNatl, fill=Crude.Rate)) + 
-        geom_bar(stat="identity", position = position_dodge(width=10)) + 
-        ylab("Crude Mortality Rate") + 
-        xlab("Year") +
-        ggtitle(paste(input$cause, "compared to the national average")) +
-        theme_bw()
+#viz use pretty much same as problem 1
+ggplot(data=data_filtered, aes(x=factor(Year), y=compare_national, fill=Crude.Rate)) + #crude fill, looks better then having so many different things
+  #could not figure out how to change the fill color from blue to another color like in problem 1 
+  geom_bar(stat="identity", position = position_dodge(width=10)) + 
+  ylab("Crude Mortality Rate") + 
+  xlab("Year") +
+  ggtitle(paste(input$cause, "compared to the national average")) + #need this so people know what they are looking at
+  theme_bw()
     }
   })
 })
