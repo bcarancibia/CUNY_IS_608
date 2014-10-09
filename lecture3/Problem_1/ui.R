@@ -4,6 +4,7 @@
 
 require(shiny)
 
+setwd("/users/bcarancibia/CUNY_IS_608/lecture3/Problem_1") #you will need to change this
 data <- read.csv("cleaned-cdc-mortality-1999-2010.csv") #load data
 
 #used this as guide: http://rstudio.github.io/shiny/tutorial/#ui-and-server

@@ -6,6 +6,7 @@ library(shiny)
 library(dplyr)
 library(ggplot2)
 
+setwd("/users/bcarancibia/CUNY_IS_608/lecture3/Problem_2") #You will need to change this
 data <- read.csv("cleaned-cdc-mortality-1999-2010.csv") #data
 
 #http://rstudio.github.io/shiny/tutorial/#inputs-and-outputs for the server side of stuff
@@ -26,7 +27,7 @@ shinyServer(function(input, output) {
     data_filtered <- datasetChoice()
     if (nrow(data_filtered) == 12){
       natlAvg <- national()
-      data_filtered["compareNatl"] <- data_filtered$Crude.Rate - ((natlAvg$Deaths/natlAvg$Population)) #compare
+      data_filtered["compareNatl"] <- data_filtered$Crude.Rate - ((natlAvg$Deaths/natlAvg$Population)) #compare seems wrong
       
 #make a viz
       

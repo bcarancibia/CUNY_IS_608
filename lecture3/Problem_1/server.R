@@ -6,6 +6,7 @@ require(shiny)
 require(dplyr)
 require(ggplot2)
 
+setwd("/users/bcarancibia/CUNY_IS_608/lecture3/Problem_1") #you will need to change this
 data <- read.csv("cleaned-cdc-mortality-1999-2010.csv") #data
 
 data <- filter(data, Year==2010) #picked 2010 based on instructions in hw
