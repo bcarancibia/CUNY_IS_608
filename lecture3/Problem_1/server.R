@@ -14,8 +14,6 @@ data <- filter(data, Year==2010) #picked 2010 based on instructions in hw
 
 shinyServer(function(input, output) {
   
-  # Compute the forumla text in a reactive expression since it is 
-  # shared by the output$caption and output$mpgPlot expressions
   datasetInput <- reactive({
     filter(data, ICD.Chapter == input$cause)
   })
@@ -28,10 +26,11 @@ shinyServer(function(input, output) {
     if (length(sorted$State) > 0){
       ggplot(data=sorted, aes(x=State, y=Crude.Rate, fill=Population)) + 
         geom_bar(stat="identity", position = position_dodge(width=10)) + 
-        coord_flip() + 
+        coord_flip() + #need coord flip for state names
         ylab("Crude Mortality Rate Across States by Cause of Death") + 
         ggtitle(input$cause) +
         theme_bw()
     }
-  
+  })
+})
  

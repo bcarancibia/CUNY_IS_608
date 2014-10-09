@@ -4,7 +4,7 @@
 
 require(shiny)
 
-data <- read.csv("cleaned-cdc-mortality-1999-2000.csv") #load data
+data <- read.csv("cleaned-cdc-mortality-1999-2010.csv") #load data
 
 #used this as guide: http://rstudio.github.io/shiny/tutorial/#ui-and-server
 # Define UI 
@@ -15,11 +15,11 @@ shinyUI(pageWithSidebar(
   
   sidebarPanel(
     selectInput("cause", "Mortality Cause:",
-                choices = names(table(cdc$ICD.Chapter))),
-    submitButton("Update")
+                choices = names(table(data$ICD.Chapter))),
+    submitButton("GO")
     ),
   
-  mainPanel(plotOutput("barPlot", height="1000px"))
+  mainPanel(plotOutput("barPlot", height="600px"))
 ))
   
 
