@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Click the button to put in a word.</p>
+
+<button onclick="reverseWords()">go</button>
+
+
+<script>
+function reverseWords(str) {
+
+    var str = prompt("Please enter a word", "Example");
+    
+    if (str != null) {
+    	return str.split(' ').reverse();
+    }
+}
+</script>
+
+</body>
+</html>
+
