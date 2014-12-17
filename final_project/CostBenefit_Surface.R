@@ -19,7 +19,7 @@ library(party)					# Alternative decision tree algorithm
 library(partykit)
 #library(rMaps)
 
-wd = "C:\\Scratch"
+wd = "/users/bcarancibia/CUNY_IS_608/final_project/honduras/"
 setwd(wd)
 
 
